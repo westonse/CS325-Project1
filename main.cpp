@@ -7,7 +7,7 @@
 //#include <conio.h>
 using namespace std;
 
-//Max array size is 26 based on txt file
+//Max array size
 const int MAX_ARRAY_SIZE = 100;
 
 
@@ -78,7 +78,7 @@ int main(int argc, char** argv)
                      *
                      */
                      //Determines max sub array and sub array indices by holding the current best sum and testing against every possible subarray
-                    for (int i = 0; i <= arraySize-2; i++)
+                    /*for (int i = 0; i <= arraySize-2; i++)
                     {
                         sum = 0;
                         for (int j = i; j <= arraySize - 1; j++)
@@ -91,7 +91,7 @@ int main(int argc, char** argv)
                                 ret = sum;
                             }
                         }
-                    }
+                    }*/
                     
                     
                     //METHOD 2: Improved Brute force//
@@ -99,6 +99,27 @@ int main(int argc, char** argv)
                      *
                      */
                     //
+                    
+                    
+                    for( int i = 1; i < arraySize; i++)
+                    {
+                        int sum = 0;
+                        int j = i;
+                        int tempStart = MaxSumStart;
+                        while(j>=tempStart)
+                        {
+                            sum += a[j];
+                            if ( sum > ret )
+                            {
+                                ret = sum;
+                                MaxSumStart = j;
+                                MaxSumEnd = i; 
+                            }
+                            j--;
+                        }
+                    }
+                    
+                    
                     
                     //METHOD 3: Divide and conquer//
                     /*
