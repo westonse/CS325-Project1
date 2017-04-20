@@ -12,7 +12,7 @@
 using namespace std;
 
 //Max array size is 26 based on txt file
-const int MAX_ARRAY_SIZE = 26;
+const int MAX_ARRAY_SIZE = 100;
 
 int main()
 {
