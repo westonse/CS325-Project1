@@ -21,6 +21,10 @@ int main()
     //sum holds sum, arraySize holds size of current array
     int sum = 0, ret = 0, arrayCount=0, arraySize = 0;
     
+    //subarray start and end positions
+    int MaxSumStart = 0;
+    int MaxSumEnd = 0;
+    
     //initialize array to 0 values
     int a[MAX_ARRAY_SIZE] = {0};
     
@@ -55,7 +59,8 @@ int main()
                             sum = sum + a[j];
                             if (sum > ret)
                             {
-                                
+                                MaxSumStart = i;
+                                MaxSumEnd = j;
                                 ret = sum;
                             }
                         }
@@ -63,6 +68,7 @@ int main()
                     //Currently displaying results to console (for ease)
                     //Need to display results in txt file for final submission
                     cout<<"Maximum subarray sum:"<<ret<<"\n";
+                    cout << "Max Sum Start Index: " << MaxSumStart << "  Max Sum End Index : " << MaxSumEnd << "\n";
                     std::fill_n(a, arraySize, 0);
                     sum = 0;
                     ret = 0;
