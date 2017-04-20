@@ -10,6 +10,33 @@ using namespace std;
 //Max array size is 26 based on txt file
 const int MAX_ARRAY_SIZE = 100;
 
+
+//printResults
+/*
+ *
+ */
+//Prints results to MSS_Results.txt
+void printResults(string path, int arrayCount, int ret, int MaxSumStart, int MaxSumEnd)
+{
+    //Output results to MSS_Results.txt using path given by user
+    std::string filename2 = path + "MSS_Results.txt";
+    ofstream myfile2;
+    //open new file if first array
+    if(arrayCount>1)
+    {
+        myfile2.open (filename2, ios::app);
+    }
+    //else append
+    else
+    {
+        myfile2.open (filename2);
+    }
+    //print results to file
+    myfile2 <<"ARRAY "<< arrayCount << " RESULTS\n\n"<<"Maximum subarray sum:"<<ret<<"\n"<<"Max Sum Start Index: " << MaxSumStart << "  Max Sum End Index : " << MaxSumEnd << "\n\n";
+    myfile2.close();
+
+}
+
 int main(int argc, char** argv)
 {
     //line of text that holds each array
@@ -35,7 +62,7 @@ int main(int argc, char** argv)
         //parse the file line by line
         while(getline(myfile,line))
         {
-            //increment arrayCount to keep track of number of arrays in file 
+            //increment arrayCount to keep track of number of arrays in file
             arrayCount++;
             //convert line to a stream object
             std::stringstream stream(line);
@@ -48,10 +75,9 @@ int main(int argc, char** argv)
                 {
                      //METHOD 1: Brute force//
                      /*
-                     * C++ Program to Find the maximum subarray sum O(n^2)
-                     * time(naive method)
+                     *
                      */
-                     //Determines max sub array and sub array indices
+                     //Determines max sub array and sub array indices by holding the current best sum and testing against every possible subarray
                     for (int i = 0; i <= arraySize-2; i++)
                     {
                         sum = 0;
@@ -67,21 +93,28 @@ int main(int argc, char** argv)
                         }
                     }
                     
-                    //Output results to MSS_Results.txt using path given by user
-                    std::string path = argv[1];
-                    std::string filename2 = path + "MSS_Results.txt";
-                    ofstream myfile2;
-                    if(arrayCount>1)
-                    {
-                        myfile2.open (filename2, ios::app);
-                    }
-                    else
-                    {
-                        myfile2.open (filename2);
-                    }
-                    myfile2 <<"ARRAY "<< arrayCount << " RESULTS\n\n"<<"Maximum subarray sum:"<<ret<<"\n"<<"Max Sum Start Index: " << MaxSumStart << "  Max Sum End Index : " << MaxSumEnd << "\n\n";
-                    myfile2.close();
-    
+                    
+                    //METHOD 2: Improved Brute force//
+                    /*
+                     *
+                     */
+                    //
+                    
+                    //METHOD 3: Divide and conquer//
+                    /*
+                     *
+                     */
+                    //
+                    
+                    //METHOD 4: Linear Time//
+                    /*
+                     *
+                     */
+                    //
+                    
+                    
+                    //Output results to MSS_Results.txt using printResults function
+                    printResults(path, arrayCount, ret, MaxSumStart, MaxSumEnd);
                     //reset variables to 0 and break
                     std::fill_n(a, arraySize, 0);
                     sum = 0;
