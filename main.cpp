@@ -16,20 +16,20 @@ const int MAX_ARRAY_SIZE = 100;
  *
  */
 //Prints results to MSS_Results.txt
-void printResults(string path, int arrayCount, int ret, int MaxSumStart, int MaxSumEnd)
+void printResults(int arrayCount, int ret, int MaxSumStart, int MaxSumEnd)
 {
     //Output results to MSS_Results.txt using path given by user
-    std::string filename2 = path + "MSS_Results.txt";
+    std::string filename2 =  "./MSS_Results.txt";
     ofstream myfile2;
     //open new file if first array
     if(arrayCount>1)
     {
-        myfile2.open (filename2, ios::app);
+        myfile2.open (filename2.c_str(), ios::app);
     }
     //else append
     else
     {
-        myfile2.open (filename2);
+        myfile2.open (filename2.c_str());
     }
     //print results to file
     myfile2 <<"ARRAY "<< arrayCount << " RESULTS\n\n"<<"Maximum subarray sum:"<<ret<<"\n"<<"Max Sum Start Index: " << MaxSumStart << "  Max Sum End Index : " << MaxSumEnd << "\n\n";
@@ -52,10 +52,10 @@ int main(int argc, char** argv)
     int a[MAX_ARRAY_SIZE] = {0};
     
     //open MSS_Problems.txt file (user inputs file name from command line)
-    std::string path = argv[1];
-    std::string filename = path + "MSS_Problems.txt";
-    ifstream myfile(filename);
-    
+    //std::string path = argv[1];
+   // std::string filename = path + "MSS_Problems.txt";
+    std::string filename =  "./MSS_Problems.txt";
+    ifstream myfile(filename.c_str());
     //if file is valid open it
     if(myfile)
     {
@@ -135,7 +135,7 @@ int main(int argc, char** argv)
                     
                     
                     //Output results to MSS_Results.txt using printResults function
-                    printResults(path, arrayCount, ret, MaxSumStart, MaxSumEnd);
+                    printResults(arrayCount, ret, MaxSumStart, MaxSumEnd);
                     //reset variables to 0 and break
                     std::fill_n(a, arraySize, 0);
                     sum = 0;
