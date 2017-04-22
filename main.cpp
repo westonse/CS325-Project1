@@ -115,20 +115,28 @@ struct posHandler {
  */
 posHandler DivideAndConquer(int * a, int start, int end){
 	posHandler payload;
-	posHandler left, right;
+	payload.pos1=start;
+	payload.pos2=end;
+	payload.pos1max=0;
+	payload.pos2max=0;
+	payload.sum=0;
+posHandler left, right;
 	int tester =0;
+//BASE CASE: one element 
     	if(end - start <= 0){ 
 		payload.pos1 = start;
 		payload.pos2 = end;
 		payload.sum = a[start];
-//		cout << "pos1:" << payload.pos1 << " pos2:" << payload.pos2 << " sum=:" << payload.sum << "\n";
+		payload.pos1max = payload.pos1;
+		payload.pos2max = payload.pos2;
 		return payload; }
 	if(end - start > 0){
 		left = DivideAndConquer(a, start, end/2);	
 		right = DivideAndConquer(a, ((start+end)/2)+1, end);
 		payload.pos1 = left.pos1;
 		payload.pos2 = right.pos2;
-
+//Cases sum all elements between the two positions.
+//CASE 1: LEFT1 -- RIGHT2
 		for (int i = left.pos1; i <= right.pos2; i++){
 			tester += a[i];
 		}	
@@ -137,7 +145,7 @@ posHandler DivideAndConquer(int * a, int start, int end){
 			payload.pos1max = left.pos1;
 			payload.pos2max = right.pos2;
 		}
-		
+//CASE 2: LEFT2 -- RIGHT2
 		tester = 0;
 		for (int i = left.pos2; i<= right.pos2; i++) {
 			tester += a[i];
@@ -147,7 +155,7 @@ posHandler DivideAndConquer(int * a, int start, int end){
 			payload.pos1max = left.pos2;
 			payload.pos2max = right.pos2;
 		}
-		
+//CASE 3: LEFT1 -- RIGHT1
 		tester = 0;
 		for (int i = left.pos1; i<= right.pos1; i++) {
 			tester += a[i];
@@ -157,7 +165,7 @@ posHandler DivideAndConquer(int * a, int start, int end){
 			payload.pos1max = left.pos1;
 			payload.pos2max = right.pos1;
 		}
-
+//CASE 4: LEFT2 -- RIGHT1
 		tester = 0;
 		for (int i= left.pos2; i <= right.pos1; i++) {
 			tester += a[i];
@@ -167,7 +175,7 @@ posHandler DivideAndConquer(int * a, int start, int end){
 			payload.pos1max = left.pos2;
 			payload.pos2max = right.pos1;
 		}
-	
+//CASE 5: LEFT1 -- LEFT2
 		tester = 0;
 		for (int i= left.pos1; i <= right.pos1; i++) {
 			tester += a[i];
@@ -177,7 +185,7 @@ posHandler DivideAndConquer(int * a, int start, int end){
 			payload.pos1max = left.pos1;
 			payload.pos2max = left.pos2;
 		}
-
+//CASE 6: RIGHT1 -- RIGHT2
 		tester = 0;
 		for (int i=right.pos1; i <= right.pos2; i++) {
 			tester+=a[i];
@@ -240,14 +248,14 @@ int main(int argc, char** argv)
                    /******** ALGORITHM 3 Divide and conquer ********/
 		posHandler result = DivideAndConquer(a, 0, arraySize-1);
 		int testsum=0;
-		cout << "pos1:" << result.pos1 << "\tpos2:" << result.pos2 << "\n";
-		cout << "pos1=" << a[result.pos1] << "\tpos2=" << a[result.pos2] << "\n";
-		cout << "pos1:" << result.pos1max << "\tpos2:" << result.pos2max << "\n";
+		cout << "pos1:" << result.pos1 << "\t\tpos2:" << result.pos2 << "\n";
+//		cout << "pos1=" << a[result.pos1] << "\tpos2=" << a[result.pos2] << "\n";
+		cout << "pos1max:" << result.pos1max << "\tpos2max:" << result.pos2max << "\n";
 		for (int k=result.pos1;k<=result.pos2;k++){
 			testsum+=a[k];
 		}
 		cout << "array sum=" << testsum << "\talgosum=" << result.sum << "\n\n";
-		   //METHOD 4: Linear Time//
+	   	//METHOD 4: Linear Time//
                     /*
                      *
                      */
