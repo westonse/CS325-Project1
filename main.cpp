@@ -35,20 +35,6 @@ void printResults(int arrayCount, int ret, int MaxSumStart, int MaxSumEnd)
 
 }
 
-<<<<<<< HEAD
-//Function for Divide and Conquer Call WIP.
-int dnc(int array[100], int start, int end, int *max, int *maxStart, int *maxEnd){
-//This section to test inputs.
-cout << "\nsize of array is " << end << "\n";
-cout << "passed in value of max is " << *max << "\n";
-cout << "position of max is " << max << "\n";
-cout << "the first element in the array is " << array[start] << "\n\n";
-cout << "\n" << *maxStart << " " << *maxEnd << "\n";
-
-}
-
-int main()
-=======
 
 //METHOD 1: Brute force//
 
@@ -113,8 +99,59 @@ void MaxSumImprovedBruteForce(int * a, int size, int arrayCount)
     printResults(arrayCount, ret, MaxSumStart, MaxSumEnd);
 
 }
+
+
+//METHOD 3: Divide and Conquer
+/*
+ *
+ */
+int DivideAndConquer(int * a, int start, int end, int *max, int *mStart, int *mEnd){
+	int left=0, right=0, mid = 0;
+//	cout << "a[0]= " << a[0] << "\n";
+//	cout << "start= " << start << "\n";
+//	cout << "end= " << end << "\n";
+//	cout << "max= " << *max << "\n";
+//	cout << "mStart= " << *mStart << "\n";
+//	cout << "mEnd= " << *mEnd << "\n";
+//	cout << "left = " << left << " right = " << right << "\n";
+    	if(end - start <= 0){ 
+//		cout << "BASE CASE a[start] = " << a[start] << "\n";
+		return a[start]; }
+	if(end - start > 0){
+		cout << "start= " << start << " end= " << end << "\n";		
+		left = DivideAndConquer(a, start, end/2, max, mStart, mEnd);	
+		right = DivideAndConquer(a, ((start+end)/2)+1, end, max, mStart, mEnd);
+		
+		if (left < 0 && right < 0) {	//CASE 1: BOTH NEGATIVE, but larger than MAX.
+			if (left > *max){
+				*max = left;
+				*mStart = start;
+				*mEnd = start;
+			}
+			if (right > *max){
+				*max = right;
+				*mStart = (start+end)/2+1;
+				*mEnd = (start+end)/2+1;
+			}			//Thus, terminates with largest negative. i.e. -1 > -15 so -1.
+		}
+		else if (left < 0){ 		
+			if (left + right < 0 && right > 0){
+				*mStart = (start+end)/2+1;
+				cout << "mStart= " << *mStart << "\n";
+			}	
+		}
+		else if (left > 0){
+			if (left + right < 0 && left > 0){
+				*mEnd = start;
+			}
+		}
+	
+		return left + right;
+	}		
+return 0;
+}
+
 int main(int argc, char** argv)
->>>>>>> refs/remotes/origin/master
 {
     //line of text that holds each array
     string line;
@@ -124,19 +161,14 @@ int main(int argc, char** argv)
     //subarray start and end positions
     int MaxSumStart = 0;
     int MaxSumEnd = 0;
- 
+    
     //initialize array to 0 values
     int a[MAX_ARRAY_SIZE] = {0};
     
-<<<<<<< HEAD
-    //open MSS_Problems.txt file (will need to change file path obvioiusly)
-    ifstream myfile( "./MSS_Problems.txt" );
-=======
     //open MSS_Problems.txt file (user inputs file name from command line)
     std::string filename = "./MSS_Problems.txt";
     ifstream myfile(filename.c_str());
     //ifstream myfile( "./MSS_Problems.txt" );
->>>>>>> refs/remotes/origin/master
     
     //if file is valid open it
     if(myfile)
@@ -155,47 +187,27 @@ int main(int argc, char** argv)
                 //once size of array is found parse the current array and determine max subarray
                 if(!stream)
                 {
-<<<<<<< HEAD
-		//METHOD 3: Divide and Conquer
-			int maxSum=0;
-			dnc(a,0,arraySize-1,&maxSum, &MaxSumStart, &MaxSumEnd);
-			maxSum=0;
-                    //METHOD 1: Brute force//
-                    //Currently only determines maximum sum
-                    //Need to also determine the sub array
-                    for (int i = 0; i <= arraySize-2; i++){
-                        sum = 0;
-                        for (int j = i; j <= arraySize - 1; j++){
-                            sum = sum + a[j];
-                            if (sum > ret){
-                                MaxSumStart = i;
-                                MaxSumEnd = j;
-                                ret = sum;
-                            }
-                        }
-                    }
-                    //Currently displaying results to console (for ease)
-                    //Need to display results in txt file for final submission
-                    cout<<"Maximum subarray sum:"<<ret<<"\n";
-                    cout<< "Max Sum Start Index: " << MaxSumStart << "  Max Sum End Index : " << MaxSumEnd << "\n";
-=======
                     /******** ALGORITHM 1 Brute Force *******/
                     //MaxSumBruteForce(a, arraySize, arrayCount);
 
                     
 
                    /******** ALGORITHM 2 Improved Brute Force *******/
-                   MaxSumImprovedBruteForce(a, arraySize, arrayCount);
+//                   MaxSumImprovedBruteForce(a, arraySize, arrayCount);
                     
                     
                     
-                    //METHOD 3: Divide and conquer//
-                    /*
-                     *
-                     */
-                    //
-                    
-                    //METHOD 4: Linear Time//
+                   /******** ALGORITHM 3 Divide and conquer ********/
+		MaxSumEnd = arraySize-1;
+		MaxSumStart = 0;
+		int sum = DivideAndConquer(a, 0, arraySize-1, &sum, &MaxSumStart, &MaxSumEnd);
+                cout << "The sum is: " << sum << "\n\n";    
+		sum = 0;
+		for (int l = MaxSumStart; l <= MaxSumEnd; l++){	
+			sum += a[l];
+		}
+		cout << "start= a[" << MaxSumStart << "] end= a[" << MaxSumEnd << "] sum= " << sum << "\n\n";	
+		   //METHOD 4: Linear Time//
                     /*
                      *
                      */
@@ -205,7 +217,6 @@ int main(int argc, char** argv)
                     //Output results to MSS_Results.txt using printResults function
                     //printResults(path, arrayCount, ret, MaxSumStart, MaxSumEnd);
                     //reset variables to 0 and break
->>>>>>> refs/remotes/origin/master
                     std::fill_n(a, arraySize, 0);
                     sum = 0;
                     ret = 0;
@@ -227,6 +238,5 @@ int main(int argc, char** argv)
         return -1;
     }
     myfile.close();
-
     return 0;
 }
