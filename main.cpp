@@ -7,6 +7,7 @@
 //#include <conio.h>
 using namespace std;
 
+
 //Max array size
 const int MAX_ARRAY_SIZE = 100;
 //printResults
@@ -101,54 +102,93 @@ void MaxSumImprovedBruteForce(int * a, int size, int arrayCount)
 }
 
 
+struct posHandler {
+	int pos1;
+	int pos2;
+	int pos1max;
+	int pos2max;
+	int sum;
+};
 //METHOD 3: Divide and Conquer
 /*
  *
  */
-int DivideAndConquer(int * a, int start, int end, int *max, int *mStart, int *mEnd){
-	int left=0, right=0, mid = 0;
-//	cout << "a[0]= " << a[0] << "\n";
-//	cout << "start= " << start << "\n";
-//	cout << "end= " << end << "\n";
-//	cout << "max= " << *max << "\n";
-//	cout << "mStart= " << *mStart << "\n";
-//	cout << "mEnd= " << *mEnd << "\n";
-//	cout << "left = " << left << " right = " << right << "\n";
+posHandler DivideAndConquer(int * a, int start, int end){
+	posHandler payload;
+	posHandler left, right;
+	int tester =0;
     	if(end - start <= 0){ 
-//		cout << "BASE CASE a[start] = " << a[start] << "\n";
-		return a[start]; }
+		payload.pos1 = start;
+		payload.pos2 = end;
+		payload.sum = a[start];
+//		cout << "pos1:" << payload.pos1 << " pos2:" << payload.pos2 << " sum=:" << payload.sum << "\n";
+		return payload; }
 	if(end - start > 0){
-		cout << "start= " << start << " end= " << end << "\n";		
-		left = DivideAndConquer(a, start, end/2, max, mStart, mEnd);	
-		right = DivideAndConquer(a, ((start+end)/2)+1, end, max, mStart, mEnd);
+		left = DivideAndConquer(a, start, end/2);	
+		right = DivideAndConquer(a, ((start+end)/2)+1, end);
+		payload.pos1 = left.pos1;
+		payload.pos2 = right.pos2;
+
+		for (int i = left.pos1; i <= right.pos2; i++){
+			tester += a[i];
+		}	
+		if (tester > payload.sum){
+			payload.sum = tester;
+			payload.pos1max = left.pos1;
+			payload.pos2max = right.pos2;
+		}
 		
-		if (left < 0 && right < 0) {	//CASE 1: BOTH NEGATIVE, but larger than MAX.
-			if (left > *max){
-				*max = left;
-				*mStart = start;
-				*mEnd = start;
-			}
-			if (right > *max){
-				*max = right;
-				*mStart = (start+end)/2+1;
-				*mEnd = (start+end)/2+1;
-			}			//Thus, terminates with largest negative. i.e. -1 > -15 so -1.
+		tester = 0;
+		for (int i = left.pos2; i<= right.pos2; i++) {
+			tester += a[i];
 		}
-		else if (left < 0){ 		
-			if (left + right < 0 && right > 0){
-				*mStart = (start+end)/2+1;
-				cout << "mStart= " << *mStart << "\n";
-			}	
+		if (tester > payload.sum) {
+			payload.sum = tester;
+			payload.pos1max = left.pos2;
+			payload.pos2max = right.pos2;
 		}
-		else if (left > 0){
-			if (left + right < 0 && left > 0){
-				*mEnd = start;
-			}
+		
+		tester = 0;
+		for (int i = left.pos1; i<= right.pos1; i++) {
+			tester += a[i];
+		}
+		if (tester > payload.sum) {
+			payload.sum = tester;
+			payload.pos1max = left.pos1;
+			payload.pos2max = right.pos1;
+		}
+
+		tester = 0;
+		for (int i= left.pos2; i <= right.pos1; i++) {
+			tester += a[i];
+		}
+		if (tester > payload.sum) {
+			payload.sum = tester;
+			payload.pos1max = left.pos2;
+			payload.pos2max = right.pos1;
 		}
 	
-		return left + right;
-	}		
-return 0;
+		tester = 0;
+		for (int i= left.pos1; i <= right.pos1; i++) {
+			tester += a[i];
+		}
+		if (tester > payload.sum){
+			payload.sum = tester;
+			payload.pos1max = left.pos1;
+			payload.pos2max = left.pos2;
+		}
+
+		tester = 0;
+		for (int i=right.pos1; i <= right.pos2; i++) {
+			tester+=a[i];
+		}
+		if (tester > payload.sum){
+			payload.sum = tester;
+			payload.pos1max = right.pos1;
+			payload.pos2max = right.pos2;
+		}
+		return payload;
+	}	
 }
 
 int main(int argc, char** argv)
@@ -198,15 +238,15 @@ int main(int argc, char** argv)
                     
                     
                    /******** ALGORITHM 3 Divide and conquer ********/
-		MaxSumEnd = arraySize-1;
-		MaxSumStart = 0;
-		int sum = DivideAndConquer(a, 0, arraySize-1, &sum, &MaxSumStart, &MaxSumEnd);
-                cout << "The sum is: " << sum << "\n\n";    
-		sum = 0;
-		for (int l = MaxSumStart; l <= MaxSumEnd; l++){	
-			sum += a[l];
+		posHandler result = DivideAndConquer(a, 0, arraySize-1);
+		int testsum=0;
+		cout << "pos1:" << result.pos1 << "\tpos2:" << result.pos2 << "\n";
+		cout << "pos1=" << a[result.pos1] << "\tpos2=" << a[result.pos2] << "\n";
+		cout << "pos1:" << result.pos1max << "\tpos2:" << result.pos2max << "\n";
+		for (int k=result.pos1;k<=result.pos2;k++){
+			testsum+=a[k];
 		}
-		cout << "start= a[" << MaxSumStart << "] end= a[" << MaxSumEnd << "] sum= " << sum << "\n\n";	
+		cout << "array sum=" << testsum << "\talgosum=" << result.sum << "\n\n";
 		   //METHOD 4: Linear Time//
                     /*
                      *
