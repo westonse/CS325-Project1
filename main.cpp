@@ -9,8 +9,6 @@ using namespace std;
 
 //Max array size
 const int MAX_ARRAY_SIZE = 100;
-
-
 //printResults
 /*
  *
@@ -19,7 +17,7 @@ const int MAX_ARRAY_SIZE = 100;
 void printResults(int arrayCount, int ret, int MaxSumStart, int MaxSumEnd)
 {
     //Output results to MSS_Results.txt using path given by user
-    std::string filename2 =  "./MSS_Results.txt";
+    std::string filename2 = "./MSS_Results.txt";
     ofstream myfile2;
     //open new file if first array
     if(arrayCount>1)
@@ -37,6 +35,70 @@ void printResults(int arrayCount, int ret, int MaxSumStart, int MaxSumEnd)
 
 }
 
+
+//METHOD 1: Brute force//
+
+/*
+MaxSumBruteForce(path, a, arraySize, arrayCount);
+Determines max sub array and sub array indices by
+holding the current best sum and testing against every possible subarray
+*/
+
+void MaxSumBruteForce(int * a, int size, int arrayCount)
+{
+     int ret = a[0];
+     int sum = 0;
+     int MaxSumStart = 0;
+     int MaxSumEnd = 0;
+    
+     for (int i = 0; i <= size-2; i++)
+     {
+         sum = 0;
+         for (int j = i; j <= size - 1; j++)
+         {
+                sum = sum + a[j];
+                if (sum > ret)
+                {
+                    MaxSumStart = i;
+                    MaxSumEnd = j;
+                    ret = sum;
+                }
+         }
+     }
+    printResults(arrayCount, ret, MaxSumStart, MaxSumEnd);
+}
+
+
+//METHOD 2: Improved Brute force//
+/*
+ *
+ */
+void MaxSumImprovedBruteForce(int * a, int size, int arrayCount)
+{
+
+    int ret = a[0];
+    int MaxSumStart = 0, MaxSumEnd = 0;
+
+ for( int i = 1; i < size; i++)
+ {
+     int sum = 0;
+     int j = i;
+     int tempStart = MaxSumStart;
+     while(j>=tempStart)
+     {
+        sum += a[j];
+        if ( sum > ret )
+        {
+            ret = sum;
+            MaxSumStart = j;
+            MaxSumEnd = i;
+        }
+        j--;
+     }
+ }
+    printResults(arrayCount, ret, MaxSumStart, MaxSumEnd);
+
+}
 int main(int argc, char** argv)
 {
     //line of text that holds each array
@@ -52,10 +114,10 @@ int main(int argc, char** argv)
     int a[MAX_ARRAY_SIZE] = {0};
     
     //open MSS_Problems.txt file (user inputs file name from command line)
-    //std::string path = argv[1];
-   // std::string filename = path + "MSS_Problems.txt";
-    std::string filename =  "./MSS_Problems.txt";
+    std::string filename = "./MSS_Problems.txt";
     ifstream myfile(filename.c_str());
+    //ifstream myfile( "./MSS_Problems.txt" );
+    
     //if file is valid open it
     if(myfile)
     {
@@ -73,51 +135,13 @@ int main(int argc, char** argv)
                 //once size of array is found parse the current array and determine max subarray
                 if(!stream)
                 {
-                     //METHOD 1: Brute force//
-                     /*
-                     *
-                     */
-                     //Determines max sub array and sub array indices by holding the current best sum and testing against every possible subarray
-                    /*for (int i = 0; i <= arraySize-2; i++)
-                    {
-                        sum = 0;
-                        for (int j = i; j <= arraySize - 1; j++)
-                        {
-                            sum = sum + a[j];
-                            if (sum > ret)
-                            {
-                                MaxSumStart = i;
-                                MaxSumEnd = j;
-                                ret = sum;
-                            }
-                        }
-                    }*/
+                    /******** ALGORITHM 1 Brute Force *******/
+                    //MaxSumBruteForce(a, arraySize, arrayCount);
+
                     
-                    
-                    //METHOD 2: Improved Brute force//
-                    /*
-                     *
-                     */
-                    //
-                    
-                    
-                    for( int i = 1; i < arraySize; i++)
-                    {
-                        int sum = 0;
-                        int j = i;
-                        int tempStart = MaxSumStart;
-                        while(j>=tempStart)
-                        {
-                            sum += a[j];
-                            if ( sum > ret )
-                            {
-                                ret = sum;
-                                MaxSumStart = j;
-                                MaxSumEnd = i; 
-                            }
-                            j--;
-                        }
-                    }
+
+                   /******** ALGORITHM 2 Improved Brute Force *******/
+                   MaxSumImprovedBruteForce(a, arraySize, arrayCount);
                     
                     
                     
@@ -135,7 +159,7 @@ int main(int argc, char** argv)
                     
                     
                     //Output results to MSS_Results.txt using printResults function
-                    printResults(arrayCount, ret, MaxSumStart, MaxSumEnd);
+                    //printResults(path, arrayCount, ret, MaxSumStart, MaxSumEnd);
                     //reset variables to 0 and break
                     std::fill_n(a, arraySize, 0);
                     sum = 0;
