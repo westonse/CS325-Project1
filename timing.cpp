@@ -77,15 +77,16 @@ int main(int argc, const char * argv[]) {
     int a[arraySize];
     clock_t t;
     
-    //seed random number generator 
+    //seed random number generator
     srand (time(NULL));
-    //generate array of random numbers of size arraySize
-    for (int i = 0; i<arraySize; i++) {
-        a[i] = rand();
-    }
+
     
     for(int j = 0; j<numTrials; j++)
     {
+        //generate array of random numbers of size arraySize
+        for (int i = 0; i<arraySize; i++) {
+            a[i] = rand();
+        }
         t = clock();
         //insert function here for timing analysis
         MaxSumBruteForce(a, arraySize);
