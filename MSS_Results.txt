@@ -1,0 +1,188 @@
+ARRAY 1 RESULTS (method 1)
+
+Maximum subarray sum:296
+Max Sum Start Index: 17  Max Sum End Index : 35
+Sub-Array: 
+[50,66,-22,-4,-55,91,100,-102,9,10,19,-10,10,11,11,-10,-18,50]
+
+ARRAY 1 RESULTS (method 2)
+
+Maximum subarray sum:296
+Max Sum Start Index: 17  Max Sum End Index : 35
+Sub-Array: 
+[50,66,-22,-4,-55,91,100,-102,9,10,19,-10,10,11,11,-10,-18,50]
+
+ARRAY 1 RESULTS (method 3)
+
+Maximum subarray sum:296
+Max Sum Start Index: 17  Max Sum End Index : 35
+Sub-Array: 
+[50,66,-22,-4,-55,91,100,-102,9,10,19,-10,10,11,11,-10,-18,50]
+
+ARRAY 1 RESULTS (method 4)
+
+Maximum subarray sum:296
+Max Sum Start Index: 17  Max Sum End Index : 35
+Sub-Array: 
+[50,66,-22,-4,-55,91,100,-102,9,10,19,-10,10,11,11,-10,-18,50]
+
+ARRAY 2 RESULTS (method 1)
+
+Maximum subarray sum:199
+Max Sum Start Index: 17  Max Sum End Index : 21
+Sub-Array: 
+[1,9,10,92]
+
+ARRAY 2 RESULTS (method 2)
+
+Maximum subarray sum:199
+Max Sum Start Index: 17  Max Sum End Index : 21
+Sub-Array: 
+[1,9,10,92]
+
+ARRAY 2 RESULTS (method 3)
+
+Maximum subarray sum:199
+Max Sum Start Index: 17  Max Sum End Index : 21
+Sub-Array: 
+[1,9,10,92]
+
+ARRAY 2 RESULTS (method 4)
+
+Maximum subarray sum:199
+Max Sum Start Index: 17  Max Sum End Index : 21
+Sub-Array: 
+[1,9,10,92]
+
+ARRAY 3 RESULTS (method 1)
+
+Maximum subarray sum:992
+Max Sum Start Index: 0  Max Sum End Index : 18
+Sub-Array: 
+[565,78,33,9,10,84,71,-4,-22,-55,-10,76,-9,-9,-11,76,89,11]
+
+ARRAY 3 RESULTS (method 2)
+
+Maximum subarray sum:992
+Max Sum Start Index: 0  Max Sum End Index : 18
+Sub-Array: 
+[565,78,33,9,10,84,71,-4,-22,-55,-10,76,-9,-9,-11,76,89,11]
+
+ARRAY 3 RESULTS (method 3)
+
+Maximum subarray sum:992
+Max Sum Start Index: 0  Max Sum End Index : 18
+Sub-Array: 
+[565,78,33,9,10,84,71,-4,-22,-55,-10,76,-9,-9,-11,76,89,11]
+
+ARRAY 3 RESULTS (method 4)
+
+Maximum subarray sum:992
+Max Sum Start Index: 0  Max Sum End Index : 18
+Sub-Array: 
+[565,78,33,9,10,84,71,-4,-22,-55,-10,76,-9,-9,-11,76,89,11]
+
+ARRAY 4 RESULTS (method 1)
+
+Maximum subarray sum:92
+Max Sum Start Index: 0  Max Sum End Index : 30
+Sub-Array: 
+[2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]
+
+ARRAY 4 RESULTS (method 2)
+
+Maximum subarray sum:92
+Max Sum Start Index: 0  Max Sum End Index : 30
+Sub-Array: 
+[2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]
+
+ARRAY 4 RESULTS (method 3)
+
+Maximum subarray sum:92
+Max Sum Start Index: 0  Max Sum End Index : 30
+Sub-Array: 
+[2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]
+
+ARRAY 4 RESULTS (method 4)
+
+Maximum subarray sum:92
+Max Sum Start Index: 0  Max Sum End Index : 30
+Sub-Array: 
+[2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]
+
+ARRAY 5 RESULTS (method 1)
+
+Maximum subarray sum:2
+Max Sum Start Index: 0  Max Sum End Index : 0
+Sub-Array: 
+ARRAY 5 RESULTS (method 2)
+
+Maximum subarray sum:2
+Max Sum Start Index: 0  Max Sum End Index : 0
+Sub-Array: 
+ARRAY 5 RESULTS (method 3)
+
+Maximum subarray sum:2
+Max Sum Start Index: 0  Max Sum End Index : 0
+Sub-Array: 
+ARRAY 5 RESULTS (method 4)
+
+Maximum subarray sum:2
+Max Sum Start Index: 0  Max Sum End Index : 0
+Sub-Array: 
+ARRAY 6 RESULTS (method 1)
+
+Maximum subarray sum:410
+Max Sum Start Index: 8  Max Sum End Index : 14
+Sub-Array: 
+[100,100,100,100,-100,100]
+
+ARRAY 6 RESULTS (method 2)
+
+Maximum subarray sum:410
+Max Sum Start Index: 8  Max Sum End Index : 14
+Sub-Array: 
+[100,100,100,100,-100,100]
+
+ARRAY 6 RESULTS (method 3)
+
+Maximum subarray sum:410
+Max Sum Start Index: 8  Max Sum End Index : 14
+Sub-Array: 
+[100,100,100,100,-100,100]
+
+ARRAY 6 RESULTS (method 4)
+
+Maximum subarray sum:410
+Max Sum Start Index: 8  Max Sum End Index : 14
+Sub-Array: 
+[100,100,100,100,-100,100]
+
+ARRAY 7 RESULTS (method 1)
+
+Maximum subarray sum:258
+Max Sum Start Index: 24  Max Sum End Index : 27
+Sub-Array: 
+[10,92,57]
+
+ARRAY 7 RESULTS (method 2)
+
+Maximum subarray sum:258
+Max Sum Start Index: 24  Max Sum End Index : 27
+Sub-Array: 
+[10,92,57]
+
+ARRAY 7 RESULTS (method 3)
+
+Maximum subarray sum:258
+Max Sum Start Index: 24  Max Sum End Index : 27
+Sub-Array: 
+[10,92,57]
+
+ARRAY 7 RESULTS (method 4)
+
+Maximum subarray sum:258
+Max Sum Start Index: 24  Max Sum End Index : 27
+Sub-Array: 
+[10,92,57]
+
